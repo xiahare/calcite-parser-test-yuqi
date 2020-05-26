@@ -12,4 +12,8 @@ more about apache. by the away, welcome to communicate with me about calcite
 
 mvn clean install -DskipTests
 
-# 2. Import into IDE
+# 2. Import Project into IDE as maven project
+
+# 3. Link generated-sources to Java source codes
+
+    target/generated-sources/javacc -> Java source codes
