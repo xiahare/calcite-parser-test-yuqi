@@ -3,6 +3,8 @@ package com.netease.yuqi.calcatetest;/*
  * Date: 2019/2/25 下午5:04
  */
 
+import org.apache.calcite.plan.RelOptUtil;
+import org.apache.calcite.rel.RelRoot;
 import org.apache.calcite.rel.type.RelDataType;
 import org.apache.calcite.rel.type.RelDataTypeFactory;
 import org.apache.calcite.rel.type.RelDataTypeSystemImpl;
@@ -26,7 +28,10 @@ public class TestSix {
 		rootSchema.add("USERS", new AbstractTable() {
 			@Override public RelDataType getRowType(final RelDataTypeFactory typeFactory) {
 				RelDataTypeFactory.FieldInfoBuilder builder = typeFactory.builder();
-				builder.add("age", new BasicSqlType(new RelDataTypeSystemImpl() {}, SqlTypeName.CHAR));
+				builder.add("age", new BasicSqlType(new RelDataTypeSystemImpl() {}, SqlTypeName.INTEGER));
+				// make errors for validator, if columns number doesm't match target table, it won't pass validation.
+				// From the errors , the issue was fixed.
+				//builder.add("name", new BasicSqlType(new RelDataTypeSystemImpl() {}, SqlTypeName.CHAR));
 				return builder.build();
 			}
 		});
@@ -45,6 +50,10 @@ public class TestSix {
 
 
 			SqlNode validate = planner.validate(parse);
+			
+			RelRoot relRoot = planner.rel(validate);
+			
+			System.out.print(RelOptUtil.toString(relRoot.project()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

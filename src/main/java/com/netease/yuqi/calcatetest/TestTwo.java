@@ -38,8 +38,11 @@ public class TestTwo {
 			Planner planner = Frameworks.getPlanner(config);
 			//dataContext = new MyDataContext(planner);
 
+			// here is deff from TestSix.java : select * 
+			// Number of INSERT target columns (1) does not equal number of source items (2)
+			// java.lang.IndexOutOfBoundsException: index (1) must be less than size (1)
 			SqlNode parse =
-					planner.parse("insert into users select y, x\n"
+					planner.parse("insert into users select y, x\n"  // here is deff from TestSix.java : select * 
 							+ "from (values (1, 'a'), (2, 'b'), (3, 'c')) as t(x, y)\n"
 							+ "where x > 1");
 
