@@ -14,7 +14,7 @@ import org.apache.calcite.rel.rules.ProjectMergeRule;
  **/
 public class RBOTestOne {
 
-    //
+    // it seems no diff ?
     public static void main(String[] args) {
         //
         String sql = "select id, c + 1, _UTF16'中国' from (select id, id + 1 as c from test where id < 5) t";

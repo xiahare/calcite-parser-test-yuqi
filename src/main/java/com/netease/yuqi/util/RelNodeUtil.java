@@ -12,6 +12,7 @@ import java.util.Map;
  * Time 10/4/19 17:51
  **/
 public class RelNodeUtil {
+	// It doesn't work.
     public static void main(String[] args) {
         String sql = "select id, text, extra_attribute_key[1] from user_behavior where source = 1 and action =2 and ( text like 'com.autonavi.minimap' or text like 'com.baidu.BaiduMap')";
 
